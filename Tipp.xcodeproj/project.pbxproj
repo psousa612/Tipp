@@ -13,6 +13,7 @@
 		3A732E2824B7C9F1008FCDB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A732E2624B7C9F1008FCDB3 /* Main.storyboard */; };
 		3A732E2A24B7C9F3008FCDB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A732E2924B7C9F3008FCDB3 /* Assets.xcassets */; };
 		3A732E2D24B7C9F3008FCDB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A732E2B24B7C9F3008FCDB3 /* LaunchScreen.storyboard */; };
+		3A8F3EC724BDAF7F0067A84E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8F3EC624BDAF7F0067A84E /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3A732E2924B7C9F3008FCDB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A732E2C24B7C9F3008FCDB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A732E2E24B7C9F3008FCDB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A8F3EC624BDAF7F0067A84E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		3A732E1F24B7C9F1008FCDB3 /* Tipp */ = {
 			isa = PBXGroup;
 			children = (
+				3A8F3EC624BDAF7F0067A84E /* SettingsViewController.swift */,
 				3A732E2024B7C9F1008FCDB3 /* AppDelegate.swift */,
 				3A732E2224B7C9F1008FCDB3 /* SceneDelegate.swift */,
 				3A732E2424B7C9F1008FCDB3 /* ViewController.swift */,
@@ -141,6 +144,7 @@
 				3A732E2524B7C9F1008FCDB3 /* ViewController.swift in Sources */,
 				3A732E2124B7C9F1008FCDB3 /* AppDelegate.swift in Sources */,
 				3A732E2324B7C9F1008FCDB3 /* SceneDelegate.swift in Sources */,
+				3A8F3EC724BDAF7F0067A84E /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
