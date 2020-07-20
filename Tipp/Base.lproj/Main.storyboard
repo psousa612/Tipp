@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WLz-u2-NJD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WLz-u2-NJD">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -18,7 +18,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-21-NJa">
                                 <rect key="frame" x="23" y="415" width="371" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.95294117647058818" green="0.92549019607843142" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.85098039215686272" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <segments>
                                     <segment title="15%"/>
                                     <segment title="18%"/>
@@ -87,7 +87,8 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
-                                    <action selector="tipFieldEdited:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ho4-kC-Ts4"/>
+                                    <action selector="tipFieldEdited:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="LY9-I8-1Qg"/>
+                                    <action selector="tipFieldEditingStart:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="4eo-hv-MPM"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip Percentage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0J-3U-dKP">
@@ -139,6 +140,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="6ER-f9-brC" id="wrR-7N-qn9"/>
+                        <outlet property="line1" destination="d5L-6X-QDV" id="gAT-9w-Wua"/>
+                        <outlet property="line2" destination="o0L-KU-eNt" id="vnu-rg-Dum"/>
+                        <outlet property="line3" destination="3ve-m1-vlA" id="GeD-ZT-xJT"/>
                         <outlet property="tipControl" destination="sOg-21-NJa" id="jp5-Hb-cyu"/>
                         <outlet property="tipField" destination="oHD-Tj-o6u" id="y5s-NS-D9q"/>
                         <outlet property="tipLabel" destination="9sV-tK-f0s" id="I3N-xp-mXv"/>
@@ -196,7 +200,8 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
-                                    <action selector="tipFieldEdited:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="UOw-Vg-4tq"/>
+                                    <action selector="percentageFieldChanged:" destination="kMj-aU-BgC" eventType="editingDidEnd" id="aZq-N3-fRn"/>
+                                    <action selector="percentageFieldEditingStart:" destination="kMj-aU-BgC" eventType="editingDidBegin" id="gPU-lZ-YcF"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lhA-nq-3mm">
@@ -205,7 +210,8 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
-                                    <action selector="tipFieldEdited:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="I90-qx-Ov0"/>
+                                    <action selector="percentageFieldChanged:" destination="kMj-aU-BgC" eventType="editingDidEnd" id="cfb-cp-bfl"/>
+                                    <action selector="percentageFieldEditingStart:" destination="kMj-aU-BgC" eventType="editingDidBegin" id="R0w-Ls-mmP"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HW7-E2-uaZ">
@@ -214,7 +220,8 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
-                                    <action selector="tipFieldEdited:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="KJR-P6-BJk"/>
+                                    <action selector="percentageFieldChanged:" destination="kMj-aU-BgC" eventType="editingDidEnd" id="nx0-2d-YMs"/>
+                                    <action selector="percentageFieldEditingStart:" destination="kMj-aU-BgC" eventType="editingDidBegin" id="Aej-Ms-4St"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0c6-Yo-XJd">
@@ -225,13 +232,52 @@
                                 <color key="textColor" red="0.96078431369999995" green="0.72549019609999998" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Theme:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-Gl-8Pt">
-                                <rect key="frame" x="140" y="485" width="134" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMg-OU-H0a">
+                                <rect key="frame" x="90" y="528" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Theme:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-Gl-8Pt">
+                                <rect key="frame" x="140" y="528" width="134" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFF-cb-7zV">
+                                <rect key="frame" x="127" y="587" width="66.666666666666671" height="66.666666666666671"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="2"/>
+                                <connections>
+                                    <action selector="button2Pressed:" destination="kMj-aU-BgC" eventType="touchUpInside" id="STf-Vq-Ueh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8i-k6-gNO">
+                                <rect key="frame" x="317.33333333333331" y="587" width="66.666666666666686" height="66.666666666666629"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="4"/>
+                                <connections>
+                                    <action selector="button4Pressed:" destination="kMj-aU-BgC" eventType="touchUpInside" id="xdY-G9-6nT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdl-ME-hYL">
+                                <rect key="frame" x="30" y="587" width="66.666666666666671" height="66.666666666666629"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="1"/>
+                                <connections>
+                                    <action selector="button1Pressed:" destination="kMj-aU-BgC" eventType="touchUpInside" id="YJs-Lt-IM3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJo-nw-edK">
+                                <rect key="frame" x="222" y="587" width="66.666666666666671" height="66.666666666666671"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="3"/>
+                                <connections>
+                                    <action selector="button3Pressed:" destination="kMj-aU-BgC" eventType="touchUpInside" id="wvF-n0-TTw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.52156862745098043" green="0.63921568627450975" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -242,6 +288,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="T88-Mk-U2K"/>
                     <connections>
+                        <outlet property="line" destination="0c6-Yo-XJd" id="95C-sw-xfY"/>
                         <outlet property="seg0Field" destination="PIk-Wr-gEA" id="rVK-Jb-LTm"/>
                         <outlet property="seg1Field" destination="lhA-nq-3mm" id="ofj-PE-d7x"/>
                         <outlet property="seg2Field" destination="HW7-E2-uaZ" id="Zr4-9F-bQZ"/>
@@ -254,7 +301,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3803" y="136"/>
+            <point key="canvasLocation" x="3802.898550724638" y="135.9375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rxZ-eW-L8q">
@@ -279,4 +326,10 @@
             <point key="canvasLocation" x="1957.9710144927537" y="135.9375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="1" width="66.666664123535156" height="66.666664123535156"/>
+        <image name="2" width="66.666664123535156" height="66.666664123535156"/>
+        <image name="3" width="66.666664123535156" height="66.666664123535156"/>
+        <image name="4" width="66.666664123535156" height="66.666664123535156"/>
+    </resources>
 </document>
