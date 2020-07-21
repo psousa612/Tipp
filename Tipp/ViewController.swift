@@ -24,12 +24,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         //Set up observer for when app goes to the background & when it comes back in
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        
     }
     
     @objc func appMovedToBackground() {
@@ -46,7 +44,7 @@ class ViewController: UIViewController {
         
         //Set up defaults if none exist -> I think optionals were made to avoid stuff like this.....
         if(!defaults.bool(forKey: "init")) {
-            print("not init")
+            //print("not init")
             defaults.set(true, forKey: "init")
             defaults.set([0.15, 0.18, 0.2], forKey: "segPercents")
             defaults.set(1, forKey: "selectedSeg")
@@ -69,20 +67,15 @@ class ViewController: UIViewController {
             
             //Set the selected segment from our saved data
             tipControl.selectedSegmentIndex = defaults.integer(forKey: "selectedSeg")
-            print(tipControl.selectedSegmentIndex)
             
             billField.text = defaults.string(forKey: "billField")
             tipField.text = defaults.string(forKey: "tipField")
 
-            
             let tipPercent : Double
             if(tipControl.selectedSegmentIndex != -1) {
                 tipPercent = (defaults.object(forKey: "segPercents") as? [Double])![tipControl.selectedSegmentIndex] * 100
             } else if(!(tipField.text?.isEmpty ?? true) ) {
-                print("asda")
                 tipPercent = Double((tipField.text!).dropLast()) ?? 0
-             
-                
             } else {
                 tipPercent = 0;
             }
@@ -114,7 +107,7 @@ class ViewController: UIViewController {
         
     }
     
-    //Convert a hex string to UIColor
+    //Converts a hex string to UIColor
     //I found this online (ty stackoverflow)
     func unwrapHex(hex: String) -> UIColor {
         var hexInt:UInt64 = 0
@@ -128,8 +121,8 @@ class ViewController: UIViewController {
         return UIColor(red: _red, green: _green, blue: _blue, alpha: _alpha)
     }
     
+    //Check and clear the bill field if the last time used was 10min+
     func handleBillTimeLogic() {
-        //Check and clear the bill field if the last time used was 10min+
         let lastTime = defaults.object(forKey: "lastTime") as! Date
         let elapsed = Date().timeIntervalSince(lastTime)
         
@@ -140,19 +133,16 @@ class ViewController: UIViewController {
             totalLabel.text = String(format: "$%.2f", 0)
         }
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         defaults.set(tipControl.selectedSegmentIndex, forKey: "selectedSeg")
         defaults.set(NSDate(), forKey: "lastTime");
-        print(NSDate());
     }
     
-    
-
     @IBAction func onTap(_ sender: Any) {
         view.endEditing(true)
     }
-    
     
     //Code below is a little spaghetti and is worth refactor if it is to be taken any further
     
@@ -163,7 +153,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tipFieldEdited(_ sender: Any) {
-         //Add the '%' suffix to the field for clairty
+        //Add the '%' suffix to the field for clairty
         
         if(tipField.text == "") {
             return;
@@ -214,7 +204,6 @@ class ViewController: UIViewController {
        
          //Save the needed data
          defaults.set(tipControl.selectedSegmentIndex, forKey: "selectedSeg")
-        print(defaults.integer(forKey: "selectedSeg"))
          defaults.set(billField.text, forKey: "billField")
          defaults.set(tipField.text, forKey: "tipField")
          defaults.synchronize()
