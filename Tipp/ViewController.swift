@@ -29,14 +29,16 @@ class ViewController: UIViewController {
         //Set up observer for when app goes to the background & when it comes back in
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
     }
     
     @objc func appMovedToBackground() {
         defaults.set(NSDate(), forKey: "lastTime");
+        defaults.set(tipControl.selectedSegmentIndex, forKey: "selectedSeg")
     }
     
     @objc func appCameToForeground() {
-        handleBillLogic();
+        handleBillTimeLogic()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +46,7 @@ class ViewController: UIViewController {
         
         //Set up defaults if none exist -> I think optionals were made to avoid stuff like this.....
         if(!defaults.bool(forKey: "init")) {
-            //print("not init")
+            print("not init")
             defaults.set(true, forKey: "init")
             defaults.set([0.15, 0.18, 0.2], forKey: "segPercents")
             defaults.set(1, forKey: "selectedSeg")
@@ -54,10 +56,8 @@ class ViewController: UIViewController {
             
         } else {
             //Load saved values
-            //print("init")
+           // print("init")
             defaults.set(true, forKey: "init")
-            
-            tipControl.selectedSegmentIndex = defaults.integer(forKey: "selectedSeg")
             
             //Refresh the segmented control with the stored values
             let percentages = defaults.object(forKey: "segPercents") as? [Double]
@@ -67,15 +67,17 @@ class ViewController: UIViewController {
                 tipControl.insertSegment(withTitle: String(format: "%g%%",percentages![i] * 100), at: i, animated: true)
             }
             
+            //Set the selected segment from our saved data
+            tipControl.selectedSegmentIndex = defaults.integer(forKey: "selectedSeg")
+            print(tipControl.selectedSegmentIndex)
+            
             billField.text = defaults.string(forKey: "billField")
             tipField.text = defaults.string(forKey: "tipField")
-            
-            //logic for the greater than 10 mins will go here me thinks
-            handleBillLogic()
+
             
             let tipPercent : Double
             if(tipControl.selectedSegmentIndex != -1) {
-                tipPercent = (defaults.object(forKey: "segPercents") as? [Double])![tipControl.selectedSegmentIndex]
+                tipPercent = (defaults.object(forKey: "segPercents") as? [Double])![tipControl.selectedSegmentIndex] * 100
             } else if(!(tipField.text?.isEmpty ?? true) ) {
                 print("asda")
                 tipPercent = Double((tipField.text!).dropLast()) ?? 0
@@ -89,6 +91,8 @@ class ViewController: UIViewController {
         }
         
         defaults.synchronize()
+        
+        handleBillTimeLogic()
 
         //Load in the selected theme
         let bgColor = unwrapHex(hex: defaults.string(forKey: "bgColor") ?? "85a392")
@@ -124,16 +128,21 @@ class ViewController: UIViewController {
         return UIColor(red: _red, green: _green, blue: _blue, alpha: _alpha)
     }
     
-    //Check time since last used
-    func handleBillLogic() {
+    func handleBillTimeLogic() {
+        //Check and clear the bill field if the last time used was 10min+
         let lastTime = defaults.object(forKey: "lastTime") as! Date
         let elapsed = Date().timeIntervalSince(lastTime)
-        print(elapsed)
         
+        //elapsed is in seconds so we need to convert our 10 min limit down
+        if(elapsed > (10 * 60)) {
+            billField.text = "";
+            tipLabel.text = String(format: "$%.2f", 0)
+            totalLabel.text = String(format: "$%.2f", 0)
+        }
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        defaults.set(tipControl.selectedSegmentIndex, forKey: "selectedSeg")
         defaults.set(NSDate(), forKey: "lastTime");
         print(NSDate());
     }
@@ -202,9 +211,10 @@ class ViewController: UIViewController {
     
     //tipPercentage should already be divided by 100
     func calculateAndDisplayTip(tipPercentage: Double) {
-        print("calculate")
+       
          //Save the needed data
          defaults.set(tipControl.selectedSegmentIndex, forKey: "selectedSeg")
+        print(defaults.integer(forKey: "selectedSeg"))
          defaults.set(billField.text, forKey: "billField")
          defaults.set(tipField.text, forKey: "tipField")
          defaults.synchronize()
